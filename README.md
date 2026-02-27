@@ -1,15 +1,29 @@
-🌐 System Architecture
-The project is built on the TCP/IP stack, focusing on reliable, ordered delivery of data between a central hub and various entry points.
+Distributed Reservation System
+A robust, Java-based client-server application designed for handling bookings and reservations across multiple distributed clients simultaneously.
 
-The Server: Acts as a continuous listener, spawning independent threads to handle each client's unique lifecycle.
+🚀 Main Features
+Client-Server Architecture: Built using pure Java Sockets for reliable, low-level network communication between the centralized server and distributed clients.
 
-The Client: A focused interface that interacts directly with the server's shared reservation state.
+Concurrent Processing: Utilizes multithreading (ClientHandler) to manage multiple client connections simultaneously, ensuring the server remains responsive.
 
-Thread Management: Every connection is isolated into its own execution context to ensure the server never hangs while waiting for a single user's input.
+Thread-Safe Operations: Implements synchronization within the core logic (ReservationService) to prevent race conditions and ensure data consistency during simultaneous booking requests.
 
-🔥 Technical Highlights
-🧵 Thread-per-Connection: Uses Java's Thread class to ensure the server remains responsive even when dozens of clients are connected.
+Clear Domain Models: Structured object-oriented design using dedicated models for bookings (Reservation) and availability (Slot).
 
-📡 Stream-Based I/O: Utilizes BufferedReader and PrintWriter for efficient, line-based data exchange.
+📁 Project Structure
+The source code is organized into clear functional components:
 
-🛡️ Error Resilience: Gracefully handles socket timeouts, unexpected client disconnects, and port conflicts.
+Server Infrastructure (SocketServer.java, ClientHandler.java): Listens for incoming client connections and assigns each to a dedicated thread for isolated processing.
+
+Core Business Logic (ReservationService.java): The centralized engine that validates, processes, and stores the booking requests securely.
+
+Client Application (BookingClient.java): The interface allowing users to connect to the server, view available slots, and submit reservations.
+
+Data Entities (Reservation.java, Slot.java): The standard objects representing the system's core data structures.
+
+🛠️ Required Dependencies
+To compile and run this project, you will need:
+
+Java Development Kit (JDK) 8 or newer installed on your system.
+
+Command-line terminal or any standard Java IDE (IntelliJ IDEA, Eclipse, VS Code) to compile and execute the .java files.
